@@ -35,7 +35,7 @@
 ## 使用说明
 - 需要编译器支持 C++ 17
 - 使用EuiX库必须同时配置 EasyX (建议20240225)，如未配置请访问图形库官网 https://easyx.cn
-- ![](test.gif)
+- ![](https://github.com/CrysiskB/EuiX/blob/main/test.gif)
 - EuiX文件夹为库源码
 - EuiXLib文件夹为提前编译完整的32位静态库（宽字符格式）及头文件
 - exp3文件夹为测试项目源码
