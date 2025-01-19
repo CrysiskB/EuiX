@@ -1,0 +1,80 @@
+{
+    "version": "2.0.0",
+    "options": {
+        "cwd": "${workspaceFolder}/build"
+    },
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "msvc-cmake-debug",
+            "command": "cmake",
+            "args": [
+                "-G",
+                "Visual Studio 17 2022",
+                "-T",
+                "host=x86",
+                "-A",
+                "win32",
+                "..",
+                "-DCMAKE_BUILD_TYPE=Debug",
+            ]
+        },
+        {
+            "type": "shell",
+            "label": "msvc-cmake-release",
+            "command": "cmake",
+            "args": [
+                "-G",
+                "Visual Studio 17 2022",
+                "-T",
+                "host=x86",
+                "-A",
+                "win32",
+                "..",
+                "-DCMAKE_BUILD_TYPE=Release",
+            ]
+        },
+        {
+            "label": "msvc-make-debug",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config=Debug",
+            ]
+        },
+        {
+            "label": "msvc-make-release",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "command": "cmake",
+            "args": [
+                "--build",
+                ".",
+                "--config=Release",
+            ]
+        },
+        {
+            "label": "msvc-Build-debug",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "msvc-cmake-debug",
+                "msvc-make-debug"
+            ]
+        },
+        {
+            "label": "msvc-Build-release",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "msvc-cmake-release",
+                "msvc-make-release"
+            ]
+        },
+    ]
+}
