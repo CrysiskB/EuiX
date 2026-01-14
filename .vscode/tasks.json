@@ -1,80 +1,368 @@
 {
-    "version": "2.0.0",
-    "options": {
-        "cwd": "${workspaceFolder}/build"
-    },
-    "tasks": [
-        {
-            "type": "shell",
-            "label": "msvc-cmake-debug",
-            "command": "cmake",
-            "args": [
-                "-G",
-                "Visual Studio 17 2022",
-                "-T",
-                "host=x86",
-                "-A",
-                "win32",
-                "..",
-                "-DCMAKE_BUILD_TYPE=Debug",
-            ]
-        },
-        {
-            "type": "shell",
-            "label": "msvc-cmake-release",
-            "command": "cmake",
-            "args": [
-                "-G",
-                "Visual Studio 17 2022",
-                "-T",
-                "host=x86",
-                "-A",
-                "win32",
-                "..",
-                "-DCMAKE_BUILD_TYPE=Release",
-            ]
-        },
-        {
-            "label": "msvc-make-debug",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "command": "cmake",
-            "args": [
-                "--build",
-                ".",
-                "--config=Debug",
-            ]
-        },
-        {
-            "label": "msvc-make-release",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "command": "cmake",
-            "args": [
-                "--build",
-                ".",
-                "--config=Release",
-            ]
-        },
-        {
-            "label": "msvc-Build-debug",
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "msvc-cmake-debug",
-                "msvc-make-debug"
-            ]
-        },
-        {
-            "label": "msvc-Build-release",
-            "dependsOrder": "sequence",
-            "dependsOn": [
-                "msvc-cmake-release",
-                "msvc-make-release"
-            ]
-        },
-    ]
+	"version": "2.0.0",
+	"options": {
+		"cwd": "${workspaceFolder}/build"
+	},
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "msvc-cmake-debug(x64)",
+			"command": "cmake",
+			"args": [
+				"-G",
+				"Visual Studio 18 2026",
+				"-T",
+				"host=x86",
+				"-A",
+				"x64",
+				"-B",
+				"msvc/x64",
+				"-S",
+				"..",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"-DCMAKE_BUILD_TYPE=Debug",
+				"-DCMAKE_VERBOSE_MAKEFILE=ON",
+				"-DCOMPILER_CL=ON",
+				"-DBUILD_X64=ON"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "msvc-cmake-release(x64)",
+			"command": "cmake",
+			"args": [
+				"-G",
+				"Visual Studio 18 2026",
+				"-T",
+				"host=x86",
+				"-A",
+				"x64",
+				"-B",
+				"msvc/x64",
+				"-S",
+				"..",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"-DCMAKE_BUILD_TYPE=Release",
+				"-DCMAKE_VERBOSE_MAKEFILE=OFF",
+				"-DCOMPILER_CL=ON",
+				"-DBUILD_X64=ON"
+			]
+		},
+		{
+			"label": "msvc-make-debug(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				"msvc/x64",
+				"--config=Debug",
+				"-j",
+				"5"
+			]
+		},
+		{
+			"label": "msvc-make-release(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				"msvc/x64",
+				"--config=Release"
+			]
+		},
+		{
+			"label": "msvc-Build-debug(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"msvc-cmake-debug(x64)",
+				"msvc-make-debug(x64)"
+			]
+		},
+		{
+			"label": "msvc-Build-release(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"msvc-cmake-release(x64)",
+				"msvc-make-release(x64)"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "gcc-cmake-debug(x64)",
+			"command": "cmake",
+			"args": [
+				"-G",
+				"MinGW Makefiles",
+				"-B",
+				"gcc/x64",
+				"-S",
+				"..",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"-DCMAKE_BUILD_TYPE=Debug",
+				"-DCMAKE_VERBOSE_MAKEFILE=ON",
+				"-DCOMPILER_GCC=ON",
+				"-DBUILD_X64=ON"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "gcc-cmake-release(x64)",
+			"command": "cmake",
+			"args": [
+				"-G",
+				"MinGW Makefiles",
+				"-B",
+				"gcc/x64",
+				"-S",
+				"..",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"-DCMAKE_BUILD_TYPE=Release",
+				"-DCMAKE_VERBOSE_MAKEFILE=OFF",
+				"-DCOMPILER_GCC=ON",
+				"-DBUILD_X64=ON"
+			]
+		},
+		{
+			"label": "gcc-make-debug(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				"gcc/x64",
+				"--config=Debug",
+				"-j",
+				"5"
+			]
+		},
+		{
+			"label": "gcc-make-release(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				"gcc/x64",
+				"--config=Release",
+			]
+		},
+		{
+			"label": "gcc-Build-debug(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"gcc-cmake-debug(x64)",
+				"gcc-make-debug(x64)"
+			]
+		},
+		{
+			"label": "gcc-Build-release(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"gcc-cmake-release(x64)",
+				"gcc-make-release(x64)"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "cl-cmake-debug(x64)",
+			"command": "cmake",
+			"args": [
+				"-G",
+				"MinGW Makefiles",
+				"-B",
+				"cl/x64",
+				"-S",
+				"..",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"-DCMAKE_BUILD_TYPE=Debug",
+				"-DCMAKE_VERBOSE_MAKEFILE=ON",
+				"-DCOMPILER_CL=ON",
+				"-DBUILD_X64=ON"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "cl-cmake-release(x64)",
+			"command": "cmake",
+			"args": [
+				"-G",
+				"MinGW Makefiles",
+				"-B",
+				"cl/x64",
+				"-S",
+				"..",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"-DCMAKE_BUILD_TYPE=Release",
+				"-DCMAKE_VERBOSE_MAKEFILE=OFF",
+				"-DCOMPILER_CL=ON",
+				"-DBUILD_X64=ON"
+			]
+		},
+		{
+			"label": "cl-make-debug(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				"cl/x64",
+				"--config=Debug",
+				"-j",
+				"5"
+			]
+		},
+		{
+			"label": "cl-make-release(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				"cl/x64",
+				"--config=Release",
+			]
+		},
+		{
+			"label": "cl-Build-debug(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"cl-cmake-debug(x64)",
+				"cl-make-debug(x64)"
+			]
+		},
+		{
+			"label": "cl-Build-release(x64)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"cl-cmake-release(x64)",
+				"cl-make-release(x64)"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "cl-cmake-debug(x86)",
+			"command": "cmake",
+			"args": [
+				"-G",
+				"MinGW Makefiles",
+				"-B",
+				"cl/x86",
+				"-S",
+				"..",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"-DCMAKE_BUILD_TYPE=Debug",
+				"-DCMAKE_VERBOSE_MAKEFILE=ON",
+				"-DCOMPILER_CL=ON",
+				"-DBUILD_X64=OFF"
+			]
+		},
+		{
+			"type": "shell",
+			"label": "cl-cmake-release(x86)",
+			"command": "cmake",
+			"args": [
+				"-G",
+				"MinGW Makefiles",
+				"-B",
+				"cl/x86",
+				"-S",
+				"..",
+				"-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+				"-DCMAKE_BUILD_TYPE=Release",
+				"-DCMAKE_VERBOSE_MAKEFILE=OFF",
+				"-DCOMPILER_CL=ON",
+				"-DBUILD_X64=OFF"
+			]
+		},
+		{
+			"label": "cl-make-debug(x86)",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				"cl/x86",
+				"--config=Debug",
+				"-j",
+				"5"
+			]
+		},
+		{
+			"label": "cl-make-release(x86)",
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			},
+			"command": "cmake",
+			"args": [
+				"--build",
+				"cl/x86",
+				"--config=Release",
+			]
+		},
+		{
+			"label": "cl-Build-debug(x86)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"cl-cmake-debug(x86)",
+				"cl-make-debug(x86)"
+			]
+		},
+		{
+			"label": "cl-Build-release(x86)",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"dependsOrder": "sequence",
+			"dependsOn": [
+				"cl-cmake-release(x86)",
+				"cl-make-release(x86)"
+			]
+		}
+	]
 }

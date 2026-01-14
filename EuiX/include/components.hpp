@@ -4,6 +4,7 @@
 #include "easyx.h"
 #include <string>
 
+// TODO 对宏定义添加其对应的命名空间前缀
 #ifndef FRONT
 #define FRONT L"Courier New"
 #endif

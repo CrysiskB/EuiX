@@ -1,5 +1,5 @@
 /******************************************************
- * EasyX Library for C++ (Ver:20240225)
+ * EasyX Library for C++ (Ver:26.1.1)
  * https://easyx.cn
  *
  * graphics.h

@@ -60,7 +60,7 @@ namespace EuiX
                 continue;
             res.emplace_back(std::make_pair(temp.substr(0, c), temp.substr(c + 1)));
         }
-        return std::move(res);
+        return res;
     }
 
     bool ContainFind(std::wstring in1, std::wstring in2)
@@ -223,6 +223,6 @@ namespace EuiX
             }
             temp.push_back(sres);
         }
-        return std::move(temp);
+        return temp;
     }
 }

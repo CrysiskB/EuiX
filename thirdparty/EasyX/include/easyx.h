@@ -1,5 +1,5 @@
 /******************************************************
- * EasyX Library for C++ (Ver:20240225)
+ * EasyX Library for C++ (Ver:26.1.1)
  * https://easyx.cn
  *
  * EasyX.h
@@ -101,7 +101,7 @@ public:
 	int getwidth() const;			// Get the width of the image
 	int getheight() const;			// Get the height of the image
 
-private:
+protected:
 	int			width, height;		// Width and height of the image
 	HBITMAP		m_hBmp;
 	HDC			m_hMemDC;
@@ -115,7 +115,7 @@ private:
 	LINESTYLE	m_LineStyle;		// Current line style
 	FILLSTYLE	m_FillStyle;		// Current fill style
 
-	virtual void SetDefault();		// Set the graphics environment as default
+	void		SetDefault();		// Set the graphics environment as default
 
 public:
 	IMAGE(int _width = 0, int _height = 0);
@@ -144,8 +144,8 @@ void setlinestyle(const LINESTYLE* pstyle);					// Set line style
 void setlinestyle(int style, int thickness = 1, const DWORD *puserstyle = NULL, DWORD userstylecount = 0);	// Set line style
 void getfillstyle(FILLSTYLE* pstyle);						// Get fill style
 void setfillstyle(const FILLSTYLE* pstyle);					// Set fill style
-void setfillstyle(int style, long hatch = NULL, IMAGE* ppattern = NULL);		// Set fill style
-void setfillstyle(BYTE* ppattern8x8);						// Set fill style
+void setfillstyle(int style, long hatch = HS_DIAGCROSS, const IMAGE* ppattern = NULL);		// Set fill style
+void setfillstyle(const BYTE* ppattern8x8);					// Set fill style
 
 void setorigin(int x, int y);								// Set coordinate origin
 void getaspectratio(float *pxasp, float *pyasp);			// Get aspect ratio
@@ -255,18 +255,18 @@ void gettextstyle(LOGFONT *font);		// Get current text style
 
 
 // Image related functions
-void loadimage(IMAGE *pDstImg, LPCTSTR pImgFile, int nWidth = 0, int nHeight = 0, bool bResize = false);					// Load image from a file (bmp/gif/jpg/png/tif/emf/wmf/ico)
-void loadimage(IMAGE *pDstImg, LPCTSTR pResType, LPCTSTR pResName, int nWidth = 0, int nHeight = 0, bool bResize = false);	// Load image from resources (bmp/gif/jpg/png/tif/emf/wmf/ico)
-void saveimage(LPCTSTR pImgFile, IMAGE* pImg = NULL);																		// Save image to a file (bmp/gif/jpg/png/tif)
+int  loadimage(IMAGE *pDstImg, LPCTSTR pImgFile, int nWidth = 0, int nHeight = 0, bool bResize = false);					// Load image from a file (bmp/gif/jpg/png/tif/emf/wmf/ico)
+int  loadimage(IMAGE *pDstImg, LPCTSTR pResType, LPCTSTR pResName, int nWidth = 0, int nHeight = 0, bool bResize = false);	// Load image from resources (bmp/gif/jpg/png/tif/emf/wmf/ico)
+void saveimage(LPCTSTR pImgFile, const IMAGE* pImg = NULL);																	// Save image to a file (bmp/gif/jpg/png/tif)
 void getimage(IMAGE *pDstImg, int srcX, int srcY, int srcWidth, int srcHeight);												// Get image from device
 void putimage(int dstX, int dstY, const IMAGE *pSrcImg, DWORD dwRop = SRCCOPY);												// Put image to device
-void putimage(int dstX, int dstY, int dstWidth, int dstHeight, const IMAGE *pSrcImg, int srcX, int srcY, DWORD dwRop = SRCCOPY);		// Put image to device
-void rotateimage(IMAGE *dstimg, IMAGE *srcimg, double radian, COLORREF bkcolor = BLACK, bool autosize = false, bool highquality = true);// Rotate image
+void putimage(int dstX, int dstY, int dstWidth, int dstHeight, const IMAGE *pSrcImg, int srcX, int srcY, DWORD dwRop = SRCCOPY);				// Put image to device
+void rotateimage(IMAGE *dstimg, const IMAGE *srcimg, double radian, COLORREF bkcolor = BLACK, bool autosize = false, bool highquality = true);	// Rotate image
 void Resize(IMAGE* pImg, int width, int height);	// Resize the device
-DWORD* GetImageBuffer(IMAGE* pImg = NULL);			// Get the display buffer of the graphics device
+DWORD* GetImageBuffer(const IMAGE* pImg = NULL);	// Get the display buffer of the graphics device
 IMAGE* GetWorkingImage();							// Get current graphics device
 void SetWorkingImage(IMAGE* pImg = NULL);			// Set current graphics device
-HDC GetImageHDC(IMAGE* pImg = NULL);				// Get the graphics device handle
+HDC GetImageHDC(const IMAGE* pImg = NULL);			// Get the graphics device handle
 
 
 // Other functions

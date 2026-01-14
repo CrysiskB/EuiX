@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "exp3-1:win启动msvc",
+            "name": "exp3-1:win启动cl(x64)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/exp3/Release/exp3-1.exe",
+            "program": "${workspaceFolder}/build/cl/x64/release/bin/exp3-1.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build",
@@ -14,10 +14,10 @@
             //"preLaunchTask": "Build"
         },
         {
-            "name": "exp3-1:win调试msvc",
+            "name": "exp3-1:win调试cl(x64)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/exp3/Debug/exp3-1.exe",
+            "program": "${workspaceFolder}/build/cl/x64/debug/bin/exp3-1.exe",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}/build",
@@ -26,10 +26,10 @@
             //"preLaunchTask": "Build"
         },
         {
-            "name": "exp3-2:win启动msvc",
+            "name": "exp3-2:win启动cl(x64)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/exp3/Release/exp3-2.exe",
+            "program": "${workspaceFolder}/build/cl/x64/release/bin/exp3-2.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build",
@@ -38,10 +38,58 @@
             //"preLaunchTask": "Build"
         },
         {
-            "name": "exp3-2:win调试msvc",
+            "name": "exp3-2:win调试cl(x64)",
             "type": "cppvsdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/exp3/Debug/exp3-2.exe",
+            "program": "${workspaceFolder}/build/cl/x64/debug/bin/exp3-2.exe",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "console": "newExternalWindow",
+            //"preLaunchTask": "Build"
+        },
+        {
+            "name": "exp3-1:win启动cl(x86)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/cl/x86/release/bin/exp3-1.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "console": "newExternalWindow",
+            //"preLaunchTask": "Build"
+        },
+        {
+            "name": "exp3-1:win调试cl(x86)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/cl/x86/debug/bin/exp3-1.exe",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "console": "newExternalWindow",
+            //"preLaunchTask": "Build"
+        },
+        {
+            "name": "exp3-2:win启动cl(x86)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/cl/x86/release/bin/exp3-2.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "console": "newExternalWindow",
+            //"preLaunchTask": "Build"
+        },
+        {
+            "name": "exp3-2:win调试cl(x86)",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/cl/x86/debug/bin/exp3-2.exe",
             "args": [],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}/build",
@@ -49,6 +97,5 @@
             "console": "newExternalWindow",
             //"preLaunchTask": "Build"
         }
-
     ]
 }

@@ -1,0 +1,148 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "gcc-default",
+            "hidden": true,
+            "generator": "MinGW Makefiles",
+            "cacheVariables": {
+                "CMAKE_VERBOSE_MAKEFILE": "ON",
+                "COMPILER_GCC": "ON"
+            }
+        },
+        {
+            "name": "gcc-debug(x64)",
+            "inherits": "gcc-default",
+            "binaryDir": "${sourceDir}/build/gcc/x64",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BUILD_X64": "ON"
+            }
+        },
+        {
+            "name": "gcc-release(x64)",
+            "inherits": "gcc-default",
+            "binaryDir": "${sourceDir}/build/gcc/x64",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_BUILD_TYPE": "Release",
+                "BUILD_X64": "ON"
+            }
+        },
+        {
+            "name": "msvc-default",
+            "hidden": true,
+            "generator": "Visual Studio 18 2026",
+            "toolset": "host=x86",
+            "architecture": "x64",
+            "binaryDir": "${sourceDir}/build/msvc",
+            "cacheVariables": {
+                "CMAKE_VERBOSE_MAKEFILE": "ON",
+                "COMPILER_CL": "ON"
+            }
+        },
+        {
+            "name": "msvc-debug(x64)",
+            "inherits": "msvc-default",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BUILD_X64": "ON"
+            }
+        },
+        {
+            "name": "msvc-release(x64)",
+            "inherits": "msvc-default",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_BUILD_TYPE": "Release",
+                "BUILD_X64": "ON"
+            }
+        },
+        {
+            "name": "cl-default",
+            "hidden": true,
+            "generator": "MinGW Makefiles",
+            "binaryDir": "${sourceDir}/build/cl",
+            "cacheVariables": {
+                "CMAKE_VERBOSE_MAKEFILE": "ON",
+                "COMPILER_CL": "ON"
+            }
+        },
+        {
+            "name": "cl-debug(x64)",
+            "inherits": "cl-default",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BUILD_X64": "ON"
+            }
+        },
+        {
+            "name": "cl-release(x64)",
+            "inherits": "cl-default",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_BUILD_TYPE": "Release",
+                "BUILD_X64": "ON"
+            }
+        },
+        {
+            "name": "cl-debug(x86)",
+            "inherits": "cl-default",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_BUILD_TYPE": "Debug",
+                "BUILD_X64": "OFF"
+            }
+        },
+        {
+            "name": "cl-release(x86)",
+            "inherits": "cl-default",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_BUILD_TYPE": "Release",
+                "BUILD_X64": "OFF"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "gcc-debug(x64)",
+            "configurePreset": "gcc-debug(x64)",
+            "jobs": 5
+        },
+        {
+            "name": "gcc-release(x64)",
+            "configurePreset": "gcc-release(x64)"
+        },
+        {
+            "name": "msvc-debug(x64)",
+            "configurePreset": "msvc-debug(x64)",
+            "jobs": 5
+        },
+        {
+            "name": "msvc-release(x64)",
+            "configurePreset": "msvc-release(x64)"
+        },
+        {
+            "name": "cl-debug(x64)",
+            "configurePreset": "cl-debug(x64)",
+            "jobs": 5
+        },
+        {
+            "name": "cl-release(x64)",
+            "configurePreset": "cl-release(x64)"
+        },
+        {
+            "name": "cl-debug(x86)",
+            "configurePreset": "cl-debug(x86)",
+            "jobs": 5
+        },
+        {
+            "name": "cl-release(x86)",
+            "configurePreset": "cl-release(x86)"
+        }
+    ]
+}

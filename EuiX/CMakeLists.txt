@@ -1,12 +1,9 @@
-project(EuiX)
-
-add_definitions(-DUNICODE -D_UNICODE)
+project(euix)
 
 include_directories(./include)
 aux_source_directory(./src SRC)
 
-add_library(EuiX STATIC ${SRC})
+link_libraries(EasyX)
 
-target_link_directories(EuiX PRIVATE ./lib/msvc)
-
-target_link_libraries(EuiX PUBLIC EasyXw)
+add_library(${PROJECT_NAME} STATIC ${SRC})
+add_dependencies(${PROJECT_NAME} EasyX)

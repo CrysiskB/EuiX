@@ -5,7 +5,7 @@ add_definitions(-DUNICODE -D_UNICODE)
 include_directories(./include)
 
 link_libraries(
-    EuiX
+    euix
 )
 
 add_executable(
@@ -14,7 +14,7 @@ add_executable(
     "./src/exp3.1.cpp"
 )
 
-add_dependencies(exp3-1 EuiX)
+add_dependencies(exp3-1 euix)
 
 add_executable(
     exp3-2
@@ -22,6 +22,6 @@ add_executable(
     "./src/exp3.2.cpp"
 )
 
-add_dependencies(exp3-2 EuiX)
+add_dependencies(exp3-2 euix)
 
 Set_Target_Properties(exp3-1 exp3-2 PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")

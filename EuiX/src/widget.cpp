@@ -305,15 +305,15 @@ namespace EuiX
                         {
                             Char.push_back(msg.ch);
                         }
-                        else if (Type == TEMP && Char.size() < limits && (msg.ch >= '0' && msg.ch <= '9' || msg.ch == '.'))
+                        else if (Type == TEMP && Char.size() < limits && ((msg.ch >= '0' && msg.ch <= '9') || msg.ch == '.'))
                         {
                             Char.push_back(msg.ch);
                         }
-                        else if (Type == TIME && Char.size() < limits && msg.ch >= '0' && msg.ch <= '9' || msg.ch == ':')
+                        else if (Type == TIME && Char.size() < limits && ((msg.ch >= '0' && msg.ch <= '9') || msg.ch == ':'))
                         {
                             Char.push_back(msg.ch);
                         }
-                        else if (Type == DATE && Char.size() < limits && msg.ch >= '0' && msg.ch <= '9' || msg.ch == '-')
+                        else if (Type == DATE && Char.size() < limits && ((msg.ch >= '0' && msg.ch <= '9') || msg.ch == '-'))
                         {
                             Char.push_back(msg.ch);
                         }
